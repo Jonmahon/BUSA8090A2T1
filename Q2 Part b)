@@ -1,0 +1,1 @@
+SELECT c.Name, l.Percentage, a.Name FROM country c, countrylanguage l, city a WHERE c.Code = l.CountryCode and l.Language = "English" and l.Percentage > 50 and c.Capital = a.ID;
