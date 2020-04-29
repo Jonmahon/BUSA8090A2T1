@@ -1,0 +1,32 @@
+library(ggplot2)
+library(tidyverse)
+
+german_deaths = 6314
+german_pop = 83020000
+aus_deaths = 89
+aus_pop = 24990000
+
+#calculating the german death rate per 100,000 population
+german_death_rate = german_deaths*(100000/german_pop)
+
+#calculating the australian death rate per 100,000 population
+aus_death_rate = aus_deaths*(100000/aus_pop)
+
+#create a tibble containing the death rate in each country
+death_rates = tibble(c(german_death_rate,aus_death_rate))
+
+#create a new tibble with the names of each country
+country = tibble(c("Germany", "Australia"))
+
+#join the two tables together using cbind to create a new tibble called table
+table = cbind(country,death_rates)
+#renaming the column names in table
+names(table)[1] = "country"
+names(table)[2] = "rate"
+
+#creating the plot. Used a geom_col to access the values of the variables. Changed the colour to "dodgerblue2"
+chart = ggplot(table,aes(rate,country))+
+  geom_col(fill = "dodgerblue2")
+#added a title to the chart and renamed it to "chart2"
+chart2 = chart + ggtitle("COVID-19 Deaths Per 100,000 Population")
+chart2
